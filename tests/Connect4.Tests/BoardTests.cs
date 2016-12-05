@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Connect4.Enums;
+using FluentAssertions;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;

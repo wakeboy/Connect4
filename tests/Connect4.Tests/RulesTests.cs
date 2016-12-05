@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Connect4.Enums;
+using FluentAssertions;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -117,6 +118,20 @@ namespace Connect4.Tests
             var result = rules.IsWinningMove(this.board, board.Cells[row, column]);
 
             result.Should().BeTrue();
+        }
+
+        [Test]
+        public void should_return_board_is_full()
+        {
+            for (var i = 0; i < board.Rows; i++)
+            {
+                for (var j = 0; j < board.Columns; j ++)
+                {
+                    board.Cells[i, j].SetState(State.Red);
+                }
+            }
+
+            rules.BoardFull(board).Should().BeTrue();
         }
 
     }

@@ -1,4 +1,5 @@
-﻿using Connect4.Exceptions;
+﻿using Connect4.Enums;
+using Connect4.Exceptions;
 
 namespace Connect4
 {
@@ -25,7 +26,11 @@ namespace Connect4
 
                 if (this.rules.IsWinningMove(Board, cell))
                 {
-                    HasWinner = true;
+                    GameState = GameState.Won;
+                }
+                else if (this.rules.BoardFull(Board))
+                {
+                    GameState = GameState.Draw;
                 }
                 else
                 {
@@ -54,6 +59,6 @@ namespace Connect4
 
         public Player ActivePlayer { get; private set; }
 
-        public bool HasWinner { get; private set; }
+        public GameState GameState { get; private set; }
     }
 }

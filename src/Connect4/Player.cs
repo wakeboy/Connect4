@@ -1,4 +1,6 @@
-﻿namespace Connect4
+﻿using Connect4.Enums;
+
+namespace Connect4
 {
     public class Player
     {

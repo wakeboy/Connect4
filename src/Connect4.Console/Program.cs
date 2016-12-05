@@ -1,4 +1,5 @@
 ﻿using Connect4;
+using Connect4.Enums;
 using Connect4.Exceptions;
 using System;
 
@@ -15,7 +16,7 @@ namespace App
             board = new Board(5, 5);
             game = new Game(board, rules);
             
-            while(!game.HasWinner)
+            while(game.GameState == GameState.Playing)
             {
                 Console.Write($"> {game.ActivePlayer.State}s Turn: ");
                 
@@ -24,9 +25,21 @@ namespace App
                 Move(col);
             }
 
-            Console.WriteLine($"Winner {game.ActivePlayer.State}!!");
+            WriteResult();
 
             Console.Read();
+        }
+
+        private static void WriteResult()
+        {
+            if (game.GameState == GameState.Won)
+            {
+                Console.WriteLine($"Winner {game.ActivePlayer.State}!!");
+            }
+            else if (game.GameState == GameState.Draw)
+            {
+                Console.WriteLine("No Winner we have a Draw");
+            }
         }
 
         private static void Move(int column)

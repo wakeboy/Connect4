@@ -1,4 +1,5 @@
-﻿using Connect4.Exceptions;
+﻿using Connect4.Enums;
+using Connect4.Exceptions;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -34,7 +35,7 @@ namespace Connect4.Tests
             game.Move(1);
 
             game.ActivePlayer.State.Should().Be(State.Red);
-            game.HasWinner.Should().BeTrue();
+            game.GameState.Should().Be(GameState.Won);
         }
 
         [Test]

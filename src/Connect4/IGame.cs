@@ -1,10 +1,12 @@
-﻿namespace Connect4
+﻿using Connect4.Enums;
+
+namespace Connect4
 {
     public interface IGame
     {
         Player ActivePlayer { get; }
 
-        bool HasWinner { get; }
+        GameState GameState { get; }
 
         void Move(int column);
 

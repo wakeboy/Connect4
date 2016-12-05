@@ -1,4 +1,7 @@
-﻿namespace Connect4
+﻿using System;
+using Connect4.Enums;
+
+namespace Connect4
 {
     public class Rules : IRules
     {
@@ -69,6 +72,19 @@
             if (board.Cells[0,  column].State != State.Empty)
             {
                 return false;
+            }
+
+            return true;
+        }
+
+        public bool BoardFull(IBoard board)
+        {
+            for (var i = 0; i < board.Columns; i++)
+            {
+                if (board.Cells[0, i].State == State.Empty)
+                {
+                    return false;
+                }
             }
 
             return true;
