@@ -18,8 +18,10 @@ namespace App
             while(!game.HasWinner)
             {
                 Console.Write($"> {game.ActivePlayer.State}s Turn: ");
-                var col = Console.ReadLine();
-                Move(int.Parse(col));
+                
+                var col = int.MinValue;
+                int.TryParse(Console.ReadLine(), out col);
+                Move(col);
             }
 
             Console.WriteLine($"Winner {game.ActivePlayer.State}!!");

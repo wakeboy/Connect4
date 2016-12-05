@@ -11,8 +11,8 @@ namespace Connect4
         {
             Board = board;
             this.rules = rules;
-            this.player1 = new Player { State = State.Red };
-            this.player2 = new Player { State = State.Yellow };
+            this.player1 = new Player(State.Red);
+            this.player2 = new Player(State.Yellow);
 
             ActivePlayer = this.player1;
         }

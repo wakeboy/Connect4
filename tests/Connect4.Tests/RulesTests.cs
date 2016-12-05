@@ -59,21 +59,22 @@ namespace Connect4.Tests
         [TestCase(1)]
         [TestCase(2)]
         [TestCase(3)]
-        public void should_be_horizontal_win(int column)
+        public void should_be_horizontal_win(int row)
         {
             board.Cells[0, 3].SetState(State.Red);
             board.Cells[0, 2].SetState(State.Red);
             board.Cells[0, 1].SetState(State.Red);
             board.Cells[0, 0].SetState(State.Red);
 
-            var result = rules.IsWinningMove(this.board, board.Cells[0, column]);
+            var result = rules.IsWinningMove(this.board, board.Cells[row, 0]);
+
             result.Should().BeTrue();
         }
 
-        [TestCase(0)]
         [TestCase(1)]
         [TestCase(2)]
         [TestCase(3)]
+        [TestCase(4)]
         public void should_be_virtical_win(int row)
         {
             board.Cells[1, 1].SetState(State.Red);
@@ -81,7 +82,40 @@ namespace Connect4.Tests
             board.Cells[3, 1].SetState(State.Red);
             board.Cells[4, 1].SetState(State.Red);
 
-            var result = rules.IsWinningMove(this.board, board.Cells[0, row]);
+            var result = rules.IsWinningMove(this.board, board.Cells[1, row]);
+
+            result.Should().BeTrue();
+        }
+        
+        [TestCase(1, 1)]
+        [TestCase(2, 2)]
+        [TestCase(3, 3)]
+        [TestCase(4, 4)]
+        public void should_be_diagonal_top_left_bottom_right_win(int row, int column)
+        {
+            board.Cells[1, 1].SetState(State.Red);
+            board.Cells[2, 2].SetState(State.Red);
+            board.Cells[3, 3].SetState(State.Red);
+            board.Cells[4, 4].SetState(State.Red);
+
+            var result = rules.IsWinningMove(this.board, board.Cells[row, column]);
+
+            result.Should().BeTrue();
+        }
+
+        [TestCase(1, 4)]
+        [TestCase(2, 3)]
+        [TestCase(3, 2)]
+        [TestCase(4, 1)]
+        public void should_be_diagonal_bottom_left_top_right_win(int row, int column)
+        {
+            board.Cells[1, 4].SetState(State.Red);
+            board.Cells[2, 3].SetState(State.Red);
+            board.Cells[3, 2].SetState(State.Red);
+            board.Cells[4, 1].SetState(State.Red);
+
+            var result = rules.IsWinningMove(this.board, board.Cells[row, column]);
+
             result.Should().BeTrue();
         }
 

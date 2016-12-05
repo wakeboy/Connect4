@@ -2,8 +2,11 @@
 {
     public class Player
     {
-        public string Name { get; set; }
+        public Player(State state)
+        {
+            State = state;
+        }
 
-        public State State { get; set; }
+        public State State { get; private set; }
     }
 }

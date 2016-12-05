@@ -16,7 +16,7 @@
             {
                 return true;
             }
-            if (IsWin(board, cell, 1, 1)) // Diagonal bottom left to top right
+            if (IsWin(board, cell, -1, 1)) // Diagonal bottom left to top right
             {
                 return true;
             }
@@ -66,7 +66,7 @@
                 return false;
             }
             
-            if (board.Cells[board.Rows-1,  column].State != State.Empty)
+            if (board.Cells[0,  column].State != State.Empty)
             {
                 return false;
             }

@@ -8,7 +8,7 @@
 
         public int Row { get; private set; }
 
-        public Cell(int column, int row)
+        public Cell(int row, int column)
         {
             Column = column;
             Row = row;
