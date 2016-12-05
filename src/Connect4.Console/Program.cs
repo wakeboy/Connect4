@@ -21,8 +21,14 @@ namespace App
                 Console.Write($"> {game.ActivePlayer.State}s Turn: ");
                 
                 var col = int.MinValue;
-                int.TryParse(Console.ReadLine(), out col);
-                Move(col);
+                if (int.TryParse(Console.ReadLine(), out col))
+                {
+                    Move(col);
+                }
+                else
+                {
+                    PrintInvalieMove();
+                }
             }
 
             WriteResult();
@@ -34,7 +40,7 @@ namespace App
         {
             if (game.GameState == GameState.Won)
             {
-                Console.WriteLine($"Winner {game.ActivePlayer.State}!!");
+                Console.WriteLine($"{game.ActivePlayer.State} WINS!!");
             }
             else if (game.GameState == GameState.Draw)
             {
@@ -51,8 +57,13 @@ namespace App
             }
             catch (InvalidMoveException ex )
             {
-                Console.WriteLine("Invalid Move Try Again");
+                PrintInvalieMove();
             }
+        }
+
+        private static void PrintInvalieMove()
+        {
+            Console.WriteLine("Invalid Move Try Again");
         }
 
         private static void PrintBoard()
@@ -61,11 +72,27 @@ namespace App
             {
                 for (int j = 0; j < board.Columns; j++)
                 {
-                    Console.Write(board.Cells[i,j].State + " ");
+                    PrintCell(board.Cells[i, j]);
                 }
                 Console.WriteLine();
             }
             Console.WriteLine();
+        }
+
+        private static void PrintCell(ICell cell)
+        {
+            if (cell.State == State.Empty)
+            {
+                Console.Write("O ");
+            }
+            else if (cell.State == State.Red)
+            {
+                Console.Write("R ");
+            }
+            else if (cell.State == State.Yellow)
+            {
+                Console.Write("Y ");
+            }
         }
     }
 }
